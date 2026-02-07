@@ -31,7 +31,7 @@ const Profile = () => {
           animate={{ opacity: 1, y: 0 }}
           className="flex items-center gap-4"
         >
-          <div className="flex h-16 w-16 items-center justify-center rounded-full gradient-primary shadow-lg">
+          <div className="flex h-16 w-16 items-center justify-center rounded-full gradient-primary shadow-[0_0_20px_hsl(260,80%,60%/0.4)]">
             <User size={28} className="text-primary-foreground" />
           </div>
           <div>
@@ -45,19 +45,19 @@ const Profile = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.1 }}
-          className="mt-6 rounded-xl bg-card border border-border overflow-hidden"
+          className="mt-6 rounded-xl glass-card neon-border overflow-hidden"
         >
           {menuItemsList.map(({ icon: Icon, label, count }, i) => (
             <button
               key={label}
-              className={`flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors hover:bg-secondary ${
-                i < menuItemsList.length - 1 ? "border-b border-border" : ""
+              className={`flex w-full items-center gap-3 px-4 py-3.5 text-left transition-colors hover:bg-secondary/50 ${
+                i < menuItemsList.length - 1 ? "border-b border-border/40" : ""
               }`}
             >
               <Icon size={18} className="text-muted-foreground" />
               <span className="flex-1 text-sm font-medium text-card-foreground">{label}</span>
               {count && (
-                <span className="rounded-full bg-primary/10 px-2 py-0.5 text-xs font-semibold text-primary">
+                <span className="rounded-full bg-primary/20 px-2 py-0.5 text-xs font-semibold text-primary">
                   {count}
                 </span>
               )}
@@ -81,7 +81,7 @@ const Profile = () => {
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.25 + i * 0.05 }}
-                className="rounded-xl bg-card border border-border p-4"
+                className="rounded-xl glass-card neon-border p-4"
               >
                 <div className="flex items-start justify-between">
                   <div>
@@ -100,7 +100,7 @@ const Profile = () => {
                     {statusLabels[order.status]}
                   </span>
                 </div>
-                <div className="mt-3 flex items-center justify-between border-t border-border pt-2">
+                <div className="mt-3 flex items-center justify-between border-t border-border/40 pt-2">
                   <span className="text-xs text-muted-foreground">{order.date}</span>
                   <span className="font-heading text-sm font-semibold text-card-foreground">
                     ${order.total.toFixed(2)}

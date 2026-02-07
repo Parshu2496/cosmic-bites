@@ -17,7 +17,7 @@ const CartItem = ({ cartItem }: CartItemProps) => {
       initial={{ opacity: 0, x: -20 }}
       animate={{ opacity: 1, x: 0 }}
       exit={{ opacity: 0, x: 20, height: 0 }}
-      className="flex items-center gap-4 rounded-xl bg-card border border-border p-3"
+      className="flex items-center gap-4 rounded-xl glass-card neon-border p-3"
     >
       <img
         src={item.image}
@@ -28,7 +28,7 @@ const CartItem = ({ cartItem }: CartItemProps) => {
         <h4 className="font-heading text-sm font-semibold text-card-foreground">
           {item.name}
         </h4>
-        <p className="text-sm font-semibold text-primary">
+        <p className="text-sm font-semibold text-accent">
           ${(item.price * quantity).toFixed(2)}
         </p>
       </div>

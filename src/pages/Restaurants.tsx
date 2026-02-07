@@ -30,11 +30,11 @@ const Restaurants = () => {
 
   return (
     <div className="min-h-screen pb-24">
-      <div className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
+      <div className="sticky top-0 z-40 bg-card/60 backdrop-blur-xl border-b border-border/40">
         <div className="container py-4">
           <h1 className="font-heading text-xl font-bold text-foreground">Browse Restaurants</h1>
           <div className="mt-3 flex items-center gap-3">
-            <div className="flex flex-1 items-center gap-3 rounded-xl bg-secondary px-4 py-2.5">
+            <div className="flex flex-1 items-center gap-3 rounded-xl glass-card neon-border px-4 py-2.5">
               <Search size={16} className="text-muted-foreground" />
               <input
                 type="text"
@@ -44,7 +44,7 @@ const Restaurants = () => {
                 className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
               />
             </div>
-            <button className="flex h-10 w-10 items-center justify-center rounded-xl bg-secondary text-muted-foreground">
+            <button className="flex h-10 w-10 items-center justify-center rounded-xl glass-card neon-border text-muted-foreground neon-glow-hover">
               <SlidersHorizontal size={18} />
             </button>
           </div>
@@ -53,10 +53,10 @@ const Restaurants = () => {
               <button
                 key={f}
                 onClick={() => setActiveFilter(f)}
-                className={`flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
+                className={`flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 ${
                   activeFilter === f
-                    ? "gradient-primary text-primary-foreground"
-                    : "bg-secondary text-secondary-foreground"
+                    ? "gradient-primary text-primary-foreground shadow-[0_0_12px_hsl(260,80%,60%/0.3)]"
+                    : "glass-card neon-border text-secondary-foreground"
                 }`}
               >
                 {f}

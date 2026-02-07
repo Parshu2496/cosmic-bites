@@ -25,7 +25,7 @@ const FoodCard = ({ item, index }: FoodCardProps) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.06, duration: 0.4 }}
-      className="flex gap-4 rounded-xl bg-card border border-border p-3 shadow-sm"
+      className="flex gap-4 rounded-xl glass-card neon-border neon-glow-hover p-3 transition-all duration-300"
     >
       <div className="relative h-24 w-24 flex-shrink-0 overflow-hidden rounded-lg">
         <img
@@ -53,10 +53,10 @@ const FoodCard = ({ item, index }: FoodCardProps) => {
             ${item.price.toFixed(2)}
           </span>
           <motion.button
-            whileHover={{ scale: 1.1 }}
+            whileHover={{ scale: 1.1, boxShadow: "0 0 20px hsl(260, 80%, 60% / 0.4)" }}
             whileTap={{ scale: 0.9 }}
             onClick={handleAdd}
-            className="flex h-8 w-8 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-md"
+            className="flex h-8 w-8 items-center justify-center rounded-full gradient-primary text-primary-foreground shadow-[0_0_10px_hsl(260,80%,60%/0.3)]"
           >
             <Plus size={16} />
           </motion.button>
