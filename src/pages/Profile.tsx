@@ -87,8 +87,8 @@ const Profile = () => {
             <User size={28} className="text-primary-foreground" />
           </div>
           <div>
-            <h1 className="font-heading text-xl font-bold text-foreground">Alex Johnson</h1>
-            <p className="text-sm text-muted-foreground">alex@quickbite.com</p>
+            <h1 className="font-heading text-xl font-bold text-foreground">Prashant Narwade</h1>
+            <p className="text-sm text-muted-foreground">prashantnrwd.com</p>
           </div>
         </motion.div>
 

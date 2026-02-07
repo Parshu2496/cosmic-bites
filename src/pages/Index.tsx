@@ -48,7 +48,7 @@ const Home = () => {
             onClick={() => navigate("/profile")}
             className="h-9 w-9 overflow-hidden rounded-full gradient-primary flex items-center justify-center shadow-[0_0_12px_hsl(260,80%,60%/0.4)]"
           >
-            <span className="text-sm font-bold text-primary-foreground">QB</span>
+            <span className="text-sm font-bold text-primary-foreground">PN</span>
           </motion.button>
         </div>
       </div>
