@@ -1,14 +1,160 @@
-// Update this page (the content is just a fallback if you fail to update the page)
+import { motion } from "framer-motion";
+import { Search, MapPin } from "lucide-react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { categories, restaurants } from "@/data/mockData";
+import RestaurantCard from "@/components/RestaurantCard";
+import heroBanner from "@/assets/hero-banner.jpg";
 
-const Index = () => {
+const Home = () => {
+  const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const navigate = useNavigate();
+
+  const featured = restaurants.filter((r) => r.featured);
+
   return (
-    <div className="flex min-h-screen items-center justify-center bg-background">
-      <div className="text-center">
-        <h1 className="mb-4 text-4xl font-bold">Welcome to Your Blank App</h1>
-        <p className="text-xl text-muted-foreground">Start building your amazing project here!</p>
+    <div className="min-h-screen pb-24">
+      {/* Header */}
+      <div className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
+        <div className="container flex items-center justify-between py-3">
+          <div>
+            <div className="flex items-center gap-1 text-xs text-muted-foreground">
+              <MapPin size={12} />
+              <span>Deliver to</span>
+            </div>
+            <h2 className="font-heading text-sm font-semibold text-foreground">
+              123 Main Street
+            </h2>
+          </div>
+          <div className="h-9 w-9 overflow-hidden rounded-full gradient-primary flex items-center justify-center">
+            <span className="text-sm font-bold text-primary-foreground">QB</span>
+          </div>
+        </div>
+      </div>
+
+      <div className="container">
+        {/* Hero */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          className="relative mt-4 overflow-hidden rounded-2xl"
+        >
+          <img
+            src={heroBanner}
+            alt="Delicious food"
+            className="h-48 w-full object-cover sm:h-56"
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-foreground/70 to-transparent" />
+          <div className="absolute inset-0 flex flex-col justify-center px-6">
+            <motion.h1
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.3, duration: 0.5 }}
+              className="font-heading text-2xl font-bold text-primary-foreground sm:text-3xl"
+            >
+              QuickBite
+            </motion.h1>
+            <motion.p
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ delay: 0.45, duration: 0.5 }}
+              className="mt-1 text-sm text-primary-foreground/80"
+            >
+              Delicious food, delivered fast 🚀
+            </motion.p>
+          </div>
+        </motion.div>
+
+        {/* Search */}
+        <motion.div
+          initial={{ opacity: 0, y: 10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.3 }}
+          className="mt-4"
+        >
+          <div className="flex items-center gap-3 rounded-xl bg-secondary px-4 py-3">
+            <Search size={18} className="text-muted-foreground" />
+            <input
+              type="text"
+              placeholder="Search restaurants or food..."
+              className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
+            />
+          </div>
+        </motion.div>
+
+        {/* Categories */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.4 }}
+          className="mt-6"
+        >
+          <h2 className="font-heading text-lg font-semibold text-foreground">Categories</h2>
+          <div className="mt-3 flex gap-3 overflow-x-auto no-scrollbar pb-2">
+            {categories.map((cat) => (
+              <motion.button
+                key={cat.id}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
+                className={`flex flex-shrink-0 flex-col items-center gap-1.5 rounded-xl px-4 py-3 transition-colors ${
+                  activeCategory === cat.id
+                    ? "gradient-primary text-primary-foreground shadow-md"
+                    : "bg-secondary text-secondary-foreground"
+                }`}
+              >
+                <span className="text-2xl">{cat.emoji}</span>
+                <span className="text-xs font-medium">{cat.name}</span>
+              </motion.button>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Featured */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.5 }}
+          className="mt-6"
+        >
+          <div className="flex items-center justify-between">
+            <h2 className="font-heading text-lg font-semibold text-foreground">
+              Featured Restaurants
+            </h2>
+            <button
+              onClick={() => navigate("/restaurants")}
+              className="text-sm font-medium text-primary"
+            >
+              See all
+            </button>
+          </div>
+          <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {featured.map((r, i) => (
+              <RestaurantCard key={r.id} restaurant={r} index={i} />
+            ))}
+          </div>
+        </motion.div>
+
+        {/* All Restaurants */}
+        <motion.div
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ delay: 0.6 }}
+          className="mt-8"
+        >
+          <h2 className="font-heading text-lg font-semibold text-foreground">
+            Popular Near You
+          </h2>
+          <div className="mt-3 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            {restaurants.map((r, i) => (
+              <RestaurantCard key={r.id} restaurant={r} index={i} />
+            ))}
+          </div>
+        </motion.div>
       </div>
     </div>
   );
 };
 
-export default Index;
+export default Home;
