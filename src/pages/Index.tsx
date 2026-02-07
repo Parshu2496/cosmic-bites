@@ -40,7 +40,7 @@ const Home = () => {
               <span>Deliver to</span>
             </div>
             <h2 className="font-heading text-sm font-semibold text-foreground">
-              123 Main Street
+              Modern College of Engineering, PUNE
             </h2>
           </div>
           <motion.button
