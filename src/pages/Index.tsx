@@ -8,9 +8,26 @@ import heroBanner from "@/assets/hero-banner.jpg";
 
 const Home = () => {
   const [activeCategory, setActiveCategory] = useState<string | null>(null);
+  const [searchQuery, setSearchQuery] = useState("");
   const navigate = useNavigate();
 
   const featured = restaurants.filter((r) => r.featured);
+
+  const handleSearch = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (searchQuery.trim()) {
+      navigate(`/restaurants?search=${encodeURIComponent(searchQuery.trim())}`);
+    }
+  };
+
+  const handleCategoryClick = (catId: string) => {
+    if (activeCategory === catId) {
+      setActiveCategory(null);
+    } else {
+      setActiveCategory(catId);
+      navigate(`/restaurants?category=${encodeURIComponent(catId)}`);
+    }
+  };
 
   return (
     <div className="min-h-screen pb-24">
@@ -26,9 +43,13 @@ const Home = () => {
               123 Main Street
             </h2>
           </div>
-          <div className="h-9 w-9 overflow-hidden rounded-full gradient-primary flex items-center justify-center shadow-[0_0_12px_hsl(260,80%,60%/0.4)]">
+          <motion.button
+            whileTap={{ scale: 0.9 }}
+            onClick={() => navigate("/profile")}
+            className="h-9 w-9 overflow-hidden rounded-full gradient-primary flex items-center justify-center shadow-[0_0_12px_hsl(260,80%,60%/0.4)]"
+          >
             <span className="text-sm font-bold text-primary-foreground">QB</span>
-          </div>
+          </motion.button>
         </div>
       </div>
 
@@ -68,7 +89,8 @@ const Home = () => {
         </motion.div>
 
         {/* Search */}
-        <motion.div
+        <motion.form
+          onSubmit={handleSearch}
           initial={{ opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.3 }}
@@ -78,11 +100,23 @@ const Home = () => {
             <Search size={18} className="text-muted-foreground" />
             <input
               type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
               placeholder="Search restaurants or food..."
               className="flex-1 bg-transparent text-sm text-foreground placeholder:text-muted-foreground outline-none"
             />
+            {searchQuery.trim() && (
+              <motion.button
+                type="submit"
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                className="rounded-lg gradient-primary px-3 py-1 text-xs font-semibold text-primary-foreground"
+              >
+                Go
+              </motion.button>
+            )}
           </div>
-        </motion.div>
+        </motion.form>
 
         {/* Categories */}
         <motion.div
@@ -98,7 +132,7 @@ const Home = () => {
                 key={cat.id}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                onClick={() => setActiveCategory(activeCategory === cat.id ? null : cat.id)}
+                onClick={() => handleCategoryClick(cat.id)}
                 className={`flex flex-shrink-0 flex-col items-center gap-1.5 rounded-xl px-4 py-3 transition-all duration-300 ${
                   activeCategory === cat.id
                     ? "gradient-primary text-primary-foreground shadow-[0_0_15px_hsl(260,80%,60%/0.4)]"
