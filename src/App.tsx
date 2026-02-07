@@ -21,7 +21,7 @@ const App = () => (
         <Toaster />
         <Sonner />
         <BrowserRouter>
-          <div className="mx-auto max-w-lg bg-background min-h-screen relative">
+          <div className="mx-auto max-w-lg min-h-screen relative space-bg starfield">
             <Routes>
               <Route path="/" element={<Index />} />
               <Route path="/restaurants" element={<Restaurants />} />

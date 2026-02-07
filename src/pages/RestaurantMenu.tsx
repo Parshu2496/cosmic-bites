@@ -32,11 +32,11 @@ const RestaurantMenu = () => {
           alt={restaurant.name}
           className="h-full w-full object-cover"
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-background via-background/40 to-transparent" />
         <motion.button
           whileTap={{ scale: 0.9 }}
           onClick={() => navigate(-1)}
-          className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full bg-card/80 backdrop-blur-sm"
+          className="absolute left-4 top-4 flex h-9 w-9 items-center justify-center rounded-full glass-card"
         >
           <ArrowLeft size={18} className="text-card-foreground" />
         </motion.button>
@@ -44,7 +44,7 @@ const RestaurantMenu = () => {
 
       {/* Info */}
       <div className="container -mt-8 relative z-10">
-        <div className="rounded-xl bg-card border border-border p-4 shadow-sm">
+        <div className="rounded-xl glass-card neon-border p-4">
           <h1 className="font-heading text-xl font-bold text-card-foreground">
             {restaurant.name}
           </h1>
@@ -73,10 +73,10 @@ const RestaurantMenu = () => {
             <button
               key={cat}
               onClick={() => setActiveTab(cat)}
-              className={`flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-medium transition-colors ${
+              className={`flex-shrink-0 rounded-full px-4 py-1.5 text-xs font-medium transition-all duration-300 ${
                 activeTab === cat
-                  ? "gradient-primary text-primary-foreground"
-                  : "bg-secondary text-secondary-foreground"
+                  ? "gradient-primary text-primary-foreground shadow-[0_0_12px_hsl(260,80%,60%/0.3)]"
+                  : "glass-card neon-border text-secondary-foreground"
               }`}
             >
               {cat}

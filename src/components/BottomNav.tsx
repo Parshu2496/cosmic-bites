@@ -15,7 +15,7 @@ const BottomNav = () => {
   const { totalItems } = useCart();
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border bg-card/95 backdrop-blur-lg safe-area-bottom">
+    <nav className="fixed bottom-0 left-0 right-0 z-50 border-t border-border/50 bg-card/70 backdrop-blur-xl safe-area-bottom">
       <div className="mx-auto flex max-w-lg items-center justify-around py-2">
         {navItems.map(({ path, icon: Icon, label }) => {
           const isActive = location.pathname === path;
@@ -28,7 +28,7 @@ const BottomNav = () => {
               <div className="relative">
                 <Icon
                   size={22}
-                  className={isActive ? "text-primary" : "text-muted-foreground"}
+                  className={isActive ? "text-accent drop-shadow-[0_0_8px_hsl(185,80%,50%/0.6)]" : "text-muted-foreground"}
                   strokeWidth={isActive ? 2.5 : 1.8}
                 />
                 {label === "Cart" && totalItems > 0 && (
@@ -43,7 +43,7 @@ const BottomNav = () => {
               </div>
               <span
                 className={`text-[10px] font-medium ${
-                  isActive ? "text-primary" : "text-muted-foreground"
+                  isActive ? "text-accent" : "text-muted-foreground"
                 }`}
               >
                 {label}
@@ -51,7 +51,7 @@ const BottomNav = () => {
               {isActive && (
                 <motion.div
                   layoutId="bottomNavIndicator"
-                  className="absolute -top-0.5 h-0.5 w-8 rounded-full gradient-primary"
+                  className="absolute -top-0.5 h-0.5 w-8 rounded-full gradient-primary shadow-[0_0_10px_hsl(260,80%,60%/0.5)]"
                   transition={{ type: "spring", stiffness: 400, damping: 30 }}
                 />
               )}

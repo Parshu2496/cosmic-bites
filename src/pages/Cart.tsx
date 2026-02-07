@@ -13,12 +13,12 @@ const Cart = () => {
 
   return (
     <div className="min-h-screen pb-24">
-      <div className="sticky top-0 z-40 bg-background/90 backdrop-blur-md border-b border-border">
+      <div className="sticky top-0 z-40 bg-card/60 backdrop-blur-xl border-b border-border/40">
         <div className="container flex items-center gap-3 py-4">
           <motion.button
             whileTap={{ scale: 0.9 }}
             onClick={() => navigate(-1)}
-            className="flex h-9 w-9 items-center justify-center rounded-full bg-secondary"
+            className="flex h-9 w-9 items-center justify-center rounded-full glass-card neon-border"
           >
             <ArrowLeft size={18} className="text-secondary-foreground" />
           </motion.button>
@@ -33,7 +33,7 @@ const Cart = () => {
             animate={{ opacity: 1, scale: 1 }}
             className="flex flex-col items-center justify-center py-20"
           >
-            <div className="flex h-20 w-20 items-center justify-center rounded-full bg-secondary">
+            <div className="flex h-20 w-20 items-center justify-center rounded-full glass-card neon-border animate-glow-pulse">
               <ShoppingBag size={32} className="text-muted-foreground" />
             </div>
             <p className="mt-4 font-heading text-lg font-semibold text-foreground">
@@ -46,7 +46,7 @@ const Cart = () => {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => navigate("/restaurants")}
-              className="mt-6 rounded-xl gradient-primary px-6 py-3 font-heading text-sm font-semibold text-primary-foreground shadow-md"
+              className="mt-6 rounded-xl gradient-primary px-6 py-3 font-heading text-sm font-semibold text-primary-foreground shadow-[0_0_20px_hsl(260,80%,60%/0.3)]"
             >
               Browse Restaurants
             </motion.button>
@@ -65,7 +65,7 @@ const Cart = () => {
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              className="mt-6 rounded-xl bg-card border border-border p-4 space-y-3"
+              className="mt-6 rounded-xl glass-card neon-border p-4 space-y-3"
             >
               <div className="flex justify-between text-sm text-muted-foreground">
                 <span>Subtotal</span>
@@ -82,9 +82,9 @@ const Cart = () => {
                   Add ${(25 - totalPrice).toFixed(2)} more for free delivery
                 </p>
               )}
-              <div className="border-t border-border pt-3 flex justify-between">
+              <div className="border-t border-border/50 pt-3 flex justify-between">
                 <span className="font-heading font-semibold text-card-foreground">Total</span>
-                <span className="font-heading text-lg font-bold text-card-foreground">
+                <span className="font-heading text-lg font-bold text-gradient-primary" style={{ WebkitTextFillColor: "transparent" }}>
                   ${total.toFixed(2)}
                 </span>
               </div>
@@ -94,14 +94,14 @@ const Cart = () => {
               <motion.button
                 whileTap={{ scale: 0.95 }}
                 onClick={clearCart}
-                className="rounded-xl border border-border bg-secondary px-4 py-3 text-sm font-medium text-secondary-foreground"
+                className="rounded-xl glass-card neon-border px-4 py-3 text-sm font-medium text-secondary-foreground"
               >
                 Clear
               </motion.button>
               <motion.button
-                whileHover={{ scale: 1.02 }}
+                whileHover={{ scale: 1.02, boxShadow: "0 0 25px hsl(260, 80%, 60% / 0.4)" }}
                 whileTap={{ scale: 0.98 }}
-                className="flex-1 rounded-xl gradient-primary py-3 font-heading text-sm font-semibold text-primary-foreground shadow-md"
+                className="flex-1 rounded-xl gradient-primary py-3 font-heading text-sm font-semibold text-primary-foreground shadow-[0_0_15px_hsl(260,80%,60%/0.3)]"
               >
                 Place Order — ${total.toFixed(2)}
               </motion.button>
